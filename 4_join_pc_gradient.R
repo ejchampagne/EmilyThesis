@@ -1,7 +1,7 @@
 #4_join_pc_gradient
 setwd("~/Desktop/Masters Analysis/analysis")
 
-source("R/3_calculate_trophic_metrics.R")
+source("EmilyThesis/3_calculate_trophic_metrics.R")
 
 library(car)
 library(vegan)

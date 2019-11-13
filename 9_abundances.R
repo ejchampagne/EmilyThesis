@@ -1,6 +1,6 @@
 #9_abundances
 setwd("~/Desktop/Masters Analysis/analysis")
-source("R/7_invertdiversity.R")
+source("EmilyThesis/7_invertdiversity.R")
 
 library(tidyverse)
 library(car)

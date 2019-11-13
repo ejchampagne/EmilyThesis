@@ -1,6 +1,6 @@
 #10_allfish analysis
 setwd("~/Desktop/Masters Analysis/analysis")
-source("R/9_abundances.R")
+source("EmilyThesis/9_abundances.R")
 
 
 fish <- read.csv("data/2018fishwbulk.csv")

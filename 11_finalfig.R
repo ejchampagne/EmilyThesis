@@ -1,7 +1,7 @@
 #11_final figures
 setwd("~/Desktop/Masters Analysis/analysis")
-source("R/9_abundances.R")
-source("R/5_analysis.R")
+source("EmilyThesis/9_abundances.R")
+source("EmilyThesis/5_analysis.R")
 
 par(mfrow=c(2,1))
 mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ PC1 + forkmm, data = si)

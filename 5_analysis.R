@@ -1,7 +1,7 @@
 #5_analysis
 setwd("~/Desktop/Masters Analysis/analysis")
 
-source("R/4_join_pc_gradient.R")
+source("EmilyThesis/4_join_pc_gradient.R")
 
 agpca <- read.csv("data/ag_pca_scores.csv")
 

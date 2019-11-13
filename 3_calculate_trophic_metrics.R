@@ -1,6 +1,6 @@
 setwd("~/Desktop/Masters Analysis/analysis")
 
-source("R/2_summarize_baselines.R")
+source("EmilyThesis/2_summarize_baselines.R")
 
 si <- filter(si, si$role.x == "cc")
 

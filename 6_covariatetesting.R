@@ -1,7 +1,7 @@
 #6_covariate testing
 setwd("~/Desktop/Masters Analysis/analysis")
 
-source("R/4_join_pc_gradient.R")
+source("EmilyThesis/4_join_pc_gradient.R")
 
 library(Hmisc)
 library(corrgram)
