@@ -6,7 +6,7 @@ source("EmilyThesis/4_join_pc_gradient.R")
 agpca <- read.csv("data/ag_pca_scores.csv")
 
 #keep <- c("AC", "DE", "BW", "EP1", "EP2", "EP3", "HT", "JC", "KC", "LEST", "PF", "PVTF", "SC", "UH", "VN", "WA", "WH", "WW")
-keeppp <- c("AC", "DE", "BW", "EP1", "EP2", "EP3", "HT", "JW", "KC", "LEST", "PF", "PVTF", "SC", "VN", "WA", "WW")#underhill removed
+keeppp <- c("AC", "BW", "DE", "EP1", "EP2", "EP3", "HT", "JW", "KC", "LEST", "PF", "PVTF", "SC", "VN", "WA", "WW")#underhill removed
 #keepsc <- c("AC", "BW", "EP1", "HT", "JW", "LEST", "PF", "PVTF", "SC", "UH", "WA", "WH", "WW")
 #removed DE and BW because need to do separately
 si <- si[si$sitecode.x %in% keeppp,]
@@ -168,15 +168,16 @@ mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ PC1, data = si)
 anova(mod_te)
 summary(mod_te)
 plot(si$PC1, qlogis(si$ter_energy_pp_0_1))
-abline(2.5388, -0.6108) #*
+abline(5.5925, -0.6108) #*
 abline(4.7279, -0.4600) #***
 
-mod_te<-lm(tp_2_pp ~ forkmm, data = si)
+mod_te<-lm(tp_2_pp ~ PC1, data = si)
 anova(mod_te)
 summary(mod_te)
 plot(si$PC1, si$tp_2_pp)
-abline(3.13732, -0.18577)
-#*
+abline(4.06617, -0.18577)#*
+abline(2.643557, 0.003580)#.
+
 
 mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ log(diptera), data = si)
 anova(mod_te)

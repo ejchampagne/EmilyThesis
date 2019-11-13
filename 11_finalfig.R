@@ -56,7 +56,7 @@ fig8 <- ggplot(si, aes(x = terpred, y = tp_2_pp)) + geom_point() + geom_smooth(m
   theme_classic()
 fig8
 
-fig9 <- ggplot(sitedata, aes(x = buf_width, y = terpred)) + geom_point() +
+fig9 <- ggplot(sitedata, aes(x = log_p_ag, y = terpred)) + geom_point() +
   geom_smooth(method="lm") +  labs(y = "proportion of predatory terrestrial invertebrates") + 
   geom_point(aes(), size = 3) + theme_classic()
 fig9
