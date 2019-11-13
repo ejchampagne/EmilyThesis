@@ -17,5 +17,5 @@ view(cn17)
 
 si17 <- full_join(cn17, h217, by = "sampleid")
 
-write.csv(si17, "data/2017_isotopes.csv")
+#write.csv(si17, "data/2017_isotopes.csv")
 view(si17)
