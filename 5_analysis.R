@@ -38,13 +38,13 @@ avPlots(mod_te,"forkmm", xlab="Partial Forklength (mm)", ylab="logit proportion 
 avPlots(mod_te,"PC1", xlab="Partial Agricuture Intensity", ylab="logit proportion terrestrial energy", 
         grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-9, 7))
 
-mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ rip_tree_cover + forkmm, data = si)
+mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ temp + forkmm, data = si)
 anova(mod_te)
 summary(mod_te)
 
 avPlots(mod_te,"forkmm", xlab="Partial Forklength (mm)", ylab="logit proportion terrestrial energy", 
         grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
-avPlots(mod_te,"rip_tree_cover", xlab="Percent tree cover", ylab="logit proportion terrestrial energy", 
+avPlots(mod_te,"temp", xlab="summer water temperature", ylab="logit proportion terrestrial energy", 
         grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
 
 mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ buf_width + forkmm, data = si)
@@ -103,14 +103,14 @@ avPlots(mod_tp,"PC1", xlab="Partial Agriculture Intensity", ylab="trophic positi
         grid = F, id = F, pch = 19, col.lines = "grey", bty ="l")
 
 
-mod_tp<-lm(tp_2_pp ~ rip_tree_cover + forkmm, data = si)
+mod_tp<-lm(tp_2_pp ~ temp + forkmm, data = si)
 anova(mod_tp)
 summary(mod_tp)
 
 avPlots(mod_tp,"forkmm", xlab="Partial Forklength (mm)", ylab="trophic position", 
         grid = F, id = F, pch = 19, col.lines = "white", bty ="l")
 
-avPlots(mod_tp,"rip_tree_cover", xlab="percent riparian tree cover", ylab="trophic position", 
+avPlots(mod_tp,"temp", xlab="partial summer temperature (C)", ylab="trophic position", 
         grid = F, id = F, pch = 19, col.lines = "white", bty ="l")
 
 mod_tp<-lm(tp_2_pp ~ buf_width + forkmm, data = si)
