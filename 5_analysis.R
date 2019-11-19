@@ -240,12 +240,32 @@ summary(mod_te)
 plot(qlogis(si$creek.chub/si$totalcount.y), si$tp_2_pp)
 abline(2.94763, -0.25366)
 #**
-mod_te<-lm(tp_2_pp ~ gastropoda, data = si)
+mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ stomachTP, data = si)
 anova(mod_te)
 summary(mod_te)
-plot(si$gastropoda, si$tp_2_pp)
-abline(2.702072, 0.004374)
+plot(si$stomachTP, qlogis(si$ter_energy_pp_0_1))
+abline()
 #**
+
+mod_tp<-lm(tp_2_pp ~ stomachTP, data = si)
+anova(mod_tp)
+summary(mod_tp)
+boxplot(tp_2_pp ~ stomachTP, data=si, xlab = "stomach content trophic position", ylab = "trophic position")
+
+mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ stomachTP, data = si)
+anova(mod_te)
+summary(mod_te)
+boxplot(qlogis(ter_energy_pp_0_1) ~ stomachTP, data=si, xlab = "stomach content trophic position", ylab = "logit percent terrestrial coupling")
+
+mod_tp<-lm(tp_2_pp ~ debris_cover, data = si)
+anova(mod_tp)
+summary(mod_tp)
+boxplot(tp_2_pp ~ debris_cover, data=si, xlab = "percent organic debris cover", ylab = "trophic position")
+
+mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ debris_cover, data = si)
+anova(mod_te)
+summary(mod_te)
+boxplot(qlogis(ter_energy_pp_0_1) ~ debris_cover, data=si, xlab = "percent organic debris cover", ylab = "logit percent terrestrial coupling")
 
 mod_te<-lm(tp_2_pp ~ p_coleoptera, data = si)
 anova(mod_te)

@@ -82,7 +82,7 @@ sitedata <- full_join(sitedata, terinv, by = "sitecode.x")
 sitedata <- full_join(sitedata, aqinv, by = "sitecode.x")
 
 #Calculates diversity 
-div_fish <-sitedata[c(1:28),c(38:69)]
+div_fish <-sitedata[c(1:28),c(39:70)]
 sitedata$fish_div<-diversity(div_fish, index = "shannon")
 sitedata$fish_div
 

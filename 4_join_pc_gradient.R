@@ -63,8 +63,8 @@ aqinv$aqpred <- aqinv$oligochaeta + aqinv$hydrachnidia + aqinv$hirudinia + aqinv
 si <- full_join(si, terinv, by = "sitecode.x")
 si <- full_join(si, aqinv, by = "sitecode.x")
 
-si[,226:250] [ si[,226:250] == 0 ] <- NA
-si[,255:276] [ si[,255:276] == 0 ] <- NA
+si[,228:252] [ si[,228:252] == 0 ] <- NA
+si[,257:278] [ si[,257:278] == 0 ] <- NA
 si[,56:87] [ si[,56:87] == 0 ] <- NA
 
 si <- select(si,-c(X.x,old.sampleid.x, replicate,old.sampleid.y, sitecode.y, species.y,role.y, 
@@ -73,4 +73,4 @@ si <- select(si,-c(X.x,old.sampleid.x, replicate,old.sampleid.y, sitecode.y, spe
              mt_settime, mt_enddate, mt_endtime, uptrap, midtrap, downtrap, mt_notes, sitename.x.x.x, 
              sitename.y.y.y, sitecode.x.y, sitename.y))
 
-si <- si[-c(165:170),]
+#si <- si[-c(165:170),]

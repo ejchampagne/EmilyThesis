@@ -9,7 +9,7 @@ library(corrgram)
 library ( vegan )
 
 #RDA terrestrial invert
-Speciester <- sitedata[,167:191]
+Speciester <- sitedata[,168:192]
 #Data were square root transformed
 Speciester
 Speciester.sq <- sqrt(Speciester)
@@ -31,7 +31,7 @@ plot(terinv_RDA, scaling=1, main="Site Scaling")
 plot(terinv_RDA, scaling=2, main="Species Scaling")
 
 #RDA aquatic inverts, currently doesnt work because of NA values
-Speciesaq <- sitedata[c(1:3,5:28),196:216]
+Speciesaq <- sitedata[c(1:3,5:28),197:217]
 #Data were square root transformed
 Speciesaq
 Speciesaq.sq <- sqrt(Speciesaq)
@@ -51,7 +51,7 @@ anova(aqinv_RDA, by="margin", permutation=999)  ###marginal significance
 plot(aqinv_RDA, scaling=1, main="Site Scaling") 
 
 #RDA fish
-Speciesfish <- sitedata[,38:69]
+Speciesfish <- sitedata[,39:70]
 #Data were square root transformed
 Speciesfish
 Speciesfish.sq <- sqrt(Speciesfish)

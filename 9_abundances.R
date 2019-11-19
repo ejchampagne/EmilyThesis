@@ -34,10 +34,10 @@ sitedata$aqcon <- sitedata$gastropoda + sitedata$ephemeroptera + sitedata$coleop
 sitedata$aqom <- sitedata$trichoptera + sitedata$amphipoda + sitedata$diptera + sitedata$hemiptera + 
   sitedata$plecoptera + sitedata$isopoda + sitedata$hymenoptera
 
-sitedata[,167:191] [ sitedata[,167:191] == 0 ] <- NA
-sitedata[,196:216] [ sitedata[,196:216] == 0 ] <- NA
+sitedata[,168:192] [ sitedata[,168:192] == 0 ] <- NA
+sitedata[,197:217] [ sitedata[,197:217] == 0 ] <- NA
 #sitedata[c(2,10,13),195:218]  <- NA
-sitedata[,38:69] [ sitedata[,38:69] == 0 ] <- NA
+sitedata[,39:70] [ sitedata[,39:70] == 0 ] <- NA
 
 #keep <- c("AC", "AT", "BG",  "EP1", "EP2", "EP3", "EP4", "FP", "GF", "HC", "HT", "JC", "JW", "KC", "LEF", "LEST", "MT", "PF", "PVTF", "SC", "UH", "VN", "WA", "WH", "WW")
 #removed DE and BW because need to do separately
@@ -231,3 +231,9 @@ plot(sitedata$terpred ~ sitedata$agimpact, xlab = "agricultural intensity gradie
 fitedible <- lm((aqpred/totalcount.y) ~ agimpact, data = sitedata)
 summary(fitedible)
 plot((sitedata$aqpred/sitedata$totalcount.y) ~ sitedata$agimpact, xlab = "agricultural intensity gradient")
+
+fitedible <- lm(debris_cover ~ agimpact, data = sitedata)
+summary(fitedible)
+plot(sitedata$debris_cover ~ sitedata$agimpact, xlab = "agricultural intensity gradient", ylab = "percent organic debris cover")
+boxplot(agimpact ~ debris_cover, data = sitedata, xlab = "agricultural intensity gradient", ylab = "percent organic debris cover")
+
