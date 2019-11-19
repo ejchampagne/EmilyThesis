@@ -163,7 +163,11 @@ fitfishdiv <- lm(fish_div~temp, data=sitedata)
 summary(fitfishdiv)
 plot(sitedata$fish_div~sitedata$temp, ylab="fish shannon diversity",xlab="summer stream temperature (C)")
 abline(-0.54995,0.08169)
-#***
+#**
+
+fitab <- lm(temp ~ order, data=sitedata)
+summary(fitfishdiv)
+plot(sitedata$temp~sitedata$order, xlab="stream order",ylab="summer stream temperature (C)")
 
 fitfishdiv <- lm(fish_div~max_depth, data=sitedata)
 summary(fitfishdiv)

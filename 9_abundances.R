@@ -220,9 +220,10 @@ plot(sitedata$edibles ~ sitedata$totalcount.y, ylab = "aquatic prey invert abund
 #par(mfrow=c(2,2))
 plot(log(sitedata$c.chub.tl) ~ log(sitedata$edibles))
 
-fitedible <- lm(terom ~ agimpact, data = sitedata)
+fitedible <- lm(temp ~ agimpact, data = sitedata)
 summary(fitedible)
-plot(sitedata$terom ~ sitedata$agimpact, xlab = "agricultural intensity gradient")
+plot(sitedata$temp ~ sitedata$agimpact, xlab = "agricultural intensity gradient")
+
 
 fitedible <- lm(terpred ~ agimpact, data = sitedata)
 summary(fitedible)
