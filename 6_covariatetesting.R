@@ -28,8 +28,12 @@ pcadata = select(sitedata,c("sitecode.x","log_p_ag","log_D", "turbidity","buf_wi
 rownames(pcadata) = pcadata$sitecode.x
 pcadata = select(pcadata,-"sitecode.x")
 
-corrgram(pcadata, order=NULL, lower.panel=panel.shade,
-upper.panel=NULL, text.panel=panel.txt)
+corrgram(pcadata, order=NULL, lower.panel=panel.conf, 
+         upper.panel=NULL, text.panel=panel.txt, 
+         diag.panel=panel.density, 
+         col.regions = colorRampPalette(c("white", "lightgrey", 
+                    "grey", "darkgrey")))
+#need to make fill white and add value labels in the boxes
 
 pca = prcomp(pcadata,scale = TRUE)
 biplot(pca)
