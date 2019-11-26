@@ -61,18 +61,18 @@ anova(mod_te)
 summary(mod_te)
 
 avPlots(mod_te,"forkmm", xlab="Partial Forklength (mm)", ylab="logit proportion terrestrial energy", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
-avPlots(mod_te,"july.nitrogen", xlab="july nitrogen", ylab="logit proportion terrestrial energy", 
-        grid = F, id = F, pch = 19, col.lines = "grey", bty ="l")
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-9, 7))
+avPlots(mod_te,"july.nitrogen", xlab="Partial July nitrogen", ylab="logit proportion terrestrial energy", 
+        grid = F, id = F, pch = 19, col.lines = "grey", bty ="l", ylim = c(-9, 7))
 
 mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ log(july.phosphorus) + forkmm, data = si)
 anova(mod_te)
 summary(mod_te)
 
 avPlots(mod_te,"forkmm", xlab="Partial Forklength (mm)", ylab="logit proportion terrestrial energy", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
-avPlots(mod_te,"log(july.phosphorus)", xlab="july phosphorus", ylab="logit proportion terrestrial energy", 
-        grid = F, id = F, pch = 19, col.lines = "grey", bty ="l")
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-9, 7))
+avPlots(mod_te,"log(july.phosphorus)", xlab="Partial log July phosphorus", ylab="logit proportion terrestrial energy", 
+        grid = F, id = F, pch = 19, col.lines = "grey", bty ="l", ylim = c(-9, 7))
 
 mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ totalcount.y + forkmm, data = si)
 anova(mod_te)
@@ -128,20 +128,20 @@ anova(mod_tp)
 summary(mod_tp)
 
 avPlots(mod_tp,"forkmm", xlab="Partial Forklength (mm)", ylab="trophic position", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 3))
 
-avPlots(mod_tp,"july.nitrogen", xlab="july nitrogen", ylab="trophic position", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
+avPlots(mod_tp,"july.nitrogen", xlab="Partial July nitrogen", ylab="trophic position", 
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 3))
 
 mod_tp<-lm(tp_2_pp ~ log(july.phosphorus) + forkmm, data = si)
 anova(mod_tp)
 summary(mod_tp)
 
 avPlots(mod_tp,"forkmm", xlab="Partial Forklength (mm)", ylab="trophic position", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 3))
 
-avPlots(mod_tp,"log(july.phosphorus)", xlab="july phosphorus", ylab="trophic position", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
+avPlots(mod_tp,"log(july.phosphorus)", xlab="Partial log July phosphorus", ylab="trophic position", 
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 3))
 
 mod_tp<-lm(tp_2_pp ~ aqpred/totalcount.y + forkmm, data = si)
 anova(mod_tp)

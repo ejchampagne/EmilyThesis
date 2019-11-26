@@ -130,53 +130,12 @@ plot(fittotalaq$resid)
 plot(log(sitedata$totalcount.y)~log(sitedata$july.phosphorus), ylab="log aquatic invertebrate abundance",xlab="log july total phosphorus")
 abline(4.7951, 0.3365)
 
-fit7 <- lm(qlogis((p_p_diptera/100))~agimpact, data=sitedata)
-summary(fit7)
-plot(fit7$resid)
-plot(qlogis((sitedata$p_p_diptera/100))~sitedata$agimpact, ylab="terrestrial diptera abundance",xlab="agricultural impact gradient")
 
-fit7 <- lm(qlogis((p_p_diptera/100))~buf_width, data=sitedata)
-summary(fit7)
-plot(fit7$resid)
-plot(qlogis((sitedata$p_p_diptera/100))~sitedata$buf_width, ylab="terrestrial diptera abundance",xlab="buffer width")
-
-fit7 <- lm(qlogis((p_p_diptera/100))~rip_tree_cover, data=sitedata)
-summary(fit7)
-plot(fit7$resid)
-plot(qlogis((sitedata$p_p_diptera/100))~sitedata$rip_tree_cover, ylab="terrestrial diptera abundance",xlab="percent canopy coverage")
-abline(-2.225339, 0.016738)
-
-fit7 <- lm(log(diptera)~agimpact, data=sitedata)
-summary(fit7)
-plot(fit7$resid)
-plot(log(sitedata$diptera)~sitedata$agimpact, ylab="aquatic diptera abundance",xlab="agricultural impact gradient")
-abline(0.8206, 0.2980)
-#.
-
-fit7 <- lm(log(diptera)~buf_width, data=sitedata)
-summary(fit7)
-plot(fit7$resid)
-plot(log(sitedata$diptera)~sitedata$buf_width, ylab="aquatic diptera abundance",xlab="buffer width")
-#
-
-fit7 <- lm(log(diptera)~july.nitrogen, data=sitedata)
-summary(fit7)
-plot(fit7$resid)
-plot(log(sitedata$diptera)~sitedata$july.nitrogen, ylab="log aquatic diptera abundance",xlab="July total nitrogen")
-abline(1.4403, 0.1570)
-#*
-
-fit7 <- lm(log(diptera)~log(july.phosphorus), data=sitedata)
-summary(fit7)
-plot(fit7$resid)
-plot(log(sitedata$diptera)~log(sitedata$july.phosphorus), ylab="log aquatic diptera abundance",xlab="log July total phosphorus")
-#abline(1.4403, 0.1570)
-#
 
 fitn <- lm(july.nitrogen~agimpact, data = sitedata)
 summary(fitn)
 plot(fitn$resid)
-plot(sitedata$july.nitrogen~sitedata$agimpact, ylab="July total nitrogen",xlab="agricultural impact gradient")
+plot(sitedata$july.nitrogen~sitedata$agimpact, ylab="July total nitrogen",xlab="agricultural impact gradient", ylim = c(-1,17))
 abline(-1.8045,1.4437)
 
 fitn <- lm(july.nitrogen~buf_width, data = sitedata)
@@ -187,7 +146,7 @@ plot(sitedata$july.nitrogen~sitedata$buf_width, ylab="July total nitrogen",xlab=
 fitn <- lm(log(july.phosphorus)~agimpact, data = sitedata)
 summary(fitn)
 plot(fitn$resid)
-plot(log(sitedata$july.phosphorus)~sitedata$agimpact, ylab="July total Phosphorus",xlab="agricultural impact gradient")
+plot(log(sitedata$july.phosphorus)~sitedata$agimpact, ylab="log July total Phosphorus",xlab="agricultural impact gradient", ylim = c(-5, 0))
 abline(-4.0198,0.2241)
 
 fitn <- lm(log(july.phosphorus)~buf_width, data = sitedata)
@@ -196,33 +155,24 @@ plot(fitn$resid)
 plot(log(sitedata$july.phosphorus)~sitedata$buf_width, ylab="July total Phosphorus",xlab="buffer width")
 abline(-4.0198,0.2241)
 
+fitn <- lm(agimpact ~ log(july.phosphorus) + july.nitrogen, data = sitedata)
+summary(fitn)
+anova(fitn)
+plot(fitn$resid)
+plot(log(sitedata$july.phosphorus) + sitedata$july.nitrogen ~sitedata$agimpact, ylab="July total Phosphorus",xlab="agricultural impact gradient")
+abline(-4.0198,0.2241)
+
 fits <- lm(c.chub.tl ~ buf_width, data = sitedata)
 summary(fits)
 plot(fitn$resid)
 plot(sitedata$july.nitrogen~sitedata$turbidity, ylab="July total nitrogen",xlab="agricultural impact gradient")
 
-fitedible <- lm(edibles ~ log(july.phosphorus), data = sitedata)
-summary(fitedible)
-plot(sitedata$edibles ~ log(sitedata$july.phosphorus), xlab = "log july total phosphorus", ylab = "aquatic prey invert abundance")
 
-fitedible <- lm(edibles ~ agimpact, data = sitedata)
-summary(fitedible)
-plot(sitedata$edibles ~ sitedata$agimpact, xlab = "agricultural intensity gradient", ylab = "aquatic prey invert abundance")
 
-fitedible <- lm(edibles ~ july.nitrogen, data = sitedata)
+fitedible <- lm(buf_width ~ agimpact, data = sitedata)
 summary(fitedible)
-plot(sitedata$edibles ~ sitedata$july.nitrogen, xlab = "july total nitrogen", ylab = "aquatic prey invert abundance")
-
-fitedible <- lm(edibles ~ totalcount.y, data = sitedata)
-summary(fitedible)
-plot(sitedata$edibles ~ sitedata$totalcount.y, ylab = "aquatic prey invert abundance")
-
-#par(mfrow=c(2,2))
-plot(log(sitedata$c.chub.tl) ~ log(sitedata$edibles))
-
-fitedible <- lm(temp ~ agimpact, data = sitedata)
-summary(fitedible)
-plot(sitedata$temp ~ sitedata$agimpact, xlab = "agricultural intensity gradient")
+plot(sitedata$buf_width ~ sitedata$agimpact, ylab = "buffer width", xlab = "agricultural intensity gradient")
+abline(326.939, -42.584)
 
 
 fitedible <- lm(terpred ~ agimpact, data = sitedata)
