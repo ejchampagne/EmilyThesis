@@ -6,6 +6,7 @@ source("EmilyThesis/4_join_pc_gradient.R")
 library(Hmisc)
 library(corrgram)
 
+
 sitedata <- right_join(envdata, pca, by = "sitecode.x")
 sitedata <- right_join(sitedata, fishmeta, by = "sitecode.x")
 
@@ -28,17 +29,24 @@ pcadata = select(sitedata,c("sitecode.x","log_p_ag","log_D", "turbidity","buf_wi
 rownames(pcadata) = pcadata$sitecode.x
 pcadata = select(pcadata,-"sitecode.x")
 
+pcadata %>% 
+  rename(
+    log.percent.agriculture = log_p_ag,
+    log.discharge = log_D,
+    buffer.width = buf_width,
+    log.sinuosity = log_sin
+  )
+
 corrgram(pcadata, order=NULL, lower.panel=panel.conf, 
          upper.panel=NULL, text.panel=panel.txt, 
-         diag.panel=panel.density, 
-         col.regions = colorRampPalette(c("white", "lightgrey", 
-                    "grey", "darkgrey")))
+         diag.panel=panel.density)
 #need to make fill white and add value labels in the boxes
 
-pca = prcomp(pcadata,scale = TRUE)
-biplot(pca)
+pca = prcomp(pcadata,scale = TRUE, center = TRUE)
+biplot(pca, xlim  = c(-0.5, 0.6), scale = 1)
 pca$x
 summary(pca)
+
 
 pcascores = as.data.frame(pca$x)
 pcascores$sitecode.x = rownames(pcascores)
