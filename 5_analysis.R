@@ -138,10 +138,10 @@ anova(mod_tp)
 summary(mod_tp)
 
 avPlots(mod_tp,"forkmm", xlab="Partial Forklength (mm)", ylab="trophic position", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 3))
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 2))
 
 avPlots(mod_tp,"log(july.phosphorus)", xlab="Partial log July phosphorus", ylab="trophic position", 
-        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 3))
+        grid = F, id = F, pch = 19, col.lines = "black", bty ="l", ylim = c(-2, 2))
 
 mod_tp<-lm(tp_2_pp ~ aqpred/totalcount.y + forkmm, data = si)
 anova(mod_tp)

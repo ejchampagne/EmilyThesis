@@ -82,11 +82,11 @@ plot(log(sitedata$creek.chub)~sitedata$agimpact, ylab="log creek chub abundance"
 #abline(2.638262, 0.007632)
 #
 
-fitcc <- lm(qlogis(creek.chub/totalcount.y) ~ agimpact, data=sitedata)
+fitcc <- lm(log(creek.chub/(edibles/totalcount.y)) ~ agimpact, data=sitedata)
 summary(fitcc)
 plot(fitcc$resid)
-plot(qlogis(sitedata$creek.chub/sitedata$totalcount.y)~sitedata$agimpact, ylab="creek chub to aq invert ratio",xlab="agricultural impact gradient")
-abline(-6.0030, 0.9572)
+plot(log(sitedata$creek.chub/(sitedata$edibles/sitedata$totalcount.y))~sitedata$agimpact, ylab="creek chub to aq invert ratio",xlab="agricultural impact gradient")
+abline(1.5133, 0.3989)
 
 fitcc <- lm(qlogis(creek.chub/totalcount.y) ~ log(july.phosphorus), data=sitedata)
 summary(fitcc)
@@ -104,6 +104,12 @@ fittotalaq <- lm(log(totalcount.y)~agimpact, data=sitedata)
 summary(fittotalaq)
 plot(fittotalaq$resid)
 plot(log(sitedata$totalcount.y)~sitedata$agimpact, ylab="log aquatic invertebrate abundance",xlab="agricultural impact gradient")
+abline(2.78181,0.20884)
+
+fittotalaq <- lm((edibles/totalcount.y)~agimpact, data=sitedata)
+summary(fittotalaq)
+plot(fittotalaq$resid)
+plot((sitedata$edibles/sitedata$totalcount.y)~sitedata$agimpact, ylab="log aquatic invertebrate abundance",xlab="agricultural impact gradient")
 abline(2.78181,0.20884)
 
 fittotalaq <- lm(log(totalcount.y)~rip_tree_cover, data=sitedata)
@@ -147,7 +153,7 @@ fitn <- lm(log(july.phosphorus)~agimpact, data = sitedata)
 summary(fitn)
 plot(fitn$resid)
 plot(log(sitedata$july.phosphorus)~sitedata$agimpact, ylab="log July total Phosphorus",xlab="agricultural impact gradient", ylim = c(-5, 0))
-abline(-4.0198,0.2241)
+abline(-4.04136,0.20917)
 
 fitn <- lm(log(july.phosphorus)~buf_width, data = sitedata)
 summary(fitn)
@@ -175,9 +181,9 @@ plot(sitedata$buf_width ~ sitedata$agimpact, ylab = "buffer width", xlab = "agri
 abline(326.939, -42.584)
 
 
-fitedible <- lm(terpred ~ agimpact, data = sitedata)
+fitedible <- lm((terpred/100) ~ agimpact, data = sitedata)
 summary(fitedible)
-plot(sitedata$terpred ~ sitedata$agimpact, xlab = "agricultural intensity gradient")
+plot((sitedata$terpred/100) ~ sitedata$agimpact, xlab = "agricultural intensity gradient")
 
 fitedible <- lm((aqpred/totalcount.y) ~ agimpact, data = sitedata)
 summary(fitedible)
