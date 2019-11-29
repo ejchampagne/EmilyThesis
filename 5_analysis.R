@@ -83,13 +83,13 @@ avPlots(mod_te,"forkmm", xlab="Partial Forklength (mm)", ylab="logit proportion 
 avPlots(mod_te,"totalcount.y", xlab="aquatic invertebrate abundance", ylab="logit proportion terrestrial energy", 
         grid = F, id = F, pch = 19, col.lines = "grey", bty ="l")
 
-mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ aqpred/totalcount.y + forkmm, data = si)
+mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ (aqpred/totalcount.y) + forkmm, data = si)
 anova(mod_te)
 summary(mod_te)
 
 avPlots(mod_te,"forkmm", xlab="Partial Forklength (mm)", ylab="logit proportion terrestrial energy", 
         grid = F, id = F, pch = 19, col.lines = "black", bty ="l")
-avPlots(mod_te,"aqpred/totalcount.y",  ylab="logit proportion terrestrial energy", 
+avPlots(mod_te,"(aqpred/totalcount.y)",  ylab="logit proportion terrestrial energy", 
         grid = F, id = F, pch = 19, col.lines = "grey", bty ="l")
 
 mod_tp<-lm(tp_2_pp ~ PC1 + forkmm, data = si)
@@ -193,10 +193,10 @@ plot(log(si$p_p_diptera), si$tp_2_pp)
 abline(3.55831, -0.13703)
 #*
 
-mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ aqpred/totalcount.y, data = si)
+mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ (aqpred/totalcount.y), data = si)
 anova(mod_te)
 summary(mod_te)
-plot(si$aqpred/si$totalcount.y, qlogis(si$ter_energy_pp_0_1))
+plot((si$aqpred/si$totalcount.y), qlogis(si$ter_energy_pp_0_1))
 #abline(2.5388, -0.6108)
 
 
@@ -211,7 +211,7 @@ mod_te<-lm(qlogis(ter_energy_pp_0_1) ~ terpred, data = si)
 anova(mod_te)
 summary(mod_te)
 plot(si$terpred, qlogis(si$ter_energy_pp_0_1))
-#abline(2.5388, -0.6108)
+abline(1.47931, 0.03639)
 
 
 mod_te<-lm(tp_2_pp ~ terpred, data = si)

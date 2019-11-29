@@ -81,12 +81,29 @@ plot(fitcc$resid)
 plot(log(sitedata$creek.chub)~sitedata$agimpact, ylab="log creek chub abundance",xlab="prey fish abundance")
 #abline(2.638262, 0.007632)
 #
+sitedata$cc_inv <- sitedata$creek.chub/sitedata$totalcount.y
 
-fitcc <- lm(log(creek.chub/(edibles/totalcount.y)) ~ agimpact, data=sitedata)
+keep <- c("AC", "AT", "BG",  "EP1", "EP2", "EP3", "EP4", "FP", "GF", "HC", "HT", "JC", "JW", "KC", "LEF", "LEST", "MT", "PF", "PVTF", "SC", "UH", "VN", "WA", "WH", "WW")
+#removed DE and BW because need to do separately
+sitedata1 <- sitedata[sitedata$sitecode.x %in% keep,]
+
+fitcc <- lm(log10(cc_inv) ~ agimpact, data=sitedata)
 summary(fitcc)
 plot(fitcc$resid)
-plot(log(sitedata$creek.chub/(sitedata$edibles/sitedata$totalcount.y))~sitedata$agimpact, ylab="creek chub to aq invert ratio",xlab="agricultural impact gradient")
-abline(1.5133, 0.3989)
+plot(log10(sitedata$cc_inv)~sitedata$agimpact, ylab="creek chub to aq invert ratio",xlab="agricultural impact gradient")
+abline(-6.0030, 0.9572)
+
+fitcc <- lm((totalcount.y/algae_cover) ~ agimpact, data=sitedata)
+summary(fitcc)
+plot(fitcc$resid)
+plot((sitedata$totalcount.y/sitedata$algae_cover)~sitedata$agimpact, ylab= "aq invert to algae cover ratio",xlab="agricultural impact gradient")
+abline(-6.0030, 0.9572)
+
+fitcc <- lm(algae_cover ~ agimpact, data=sitedata)
+summary(fitcc)
+plot(fitcc$resid)
+plot(sitedata$algae_cover~sitedata$agimpact, ylab= "percent algae cover",xlab="agricultural impact gradient")
+abline(-6.0030, 0.9572)
 
 fitcc <- lm(qlogis(creek.chub/totalcount.y) ~ log(july.phosphorus), data=sitedata)
 summary(fitcc)
@@ -109,8 +126,9 @@ abline(2.78181,0.20884)
 fittotalaq <- lm((edibles/totalcount.y)~agimpact, data=sitedata)
 summary(fittotalaq)
 plot(fittotalaq$resid)
-plot((sitedata$edibles/sitedata$totalcount.y)~sitedata$agimpact, ylab="log aquatic invertebrate abundance",xlab="agricultural impact gradient")
-abline(2.78181,0.20884)
+plot((sitedata$edibles/sitedata$totalcount.y)~sitedata$agimpact, ylab="log aquatic invertebrate abundance",xlab="agricultural impact gradient", 
+     ylim = c(0, 1.2))
+abline(1.11509,-0.05093)
 
 fittotalaq <- lm(log(totalcount.y)~rip_tree_cover, data=sitedata)
 summary(fittotalaq)
@@ -168,12 +186,20 @@ plot(fitn$resid)
 plot(log(sitedata$july.phosphorus) + sitedata$july.nitrogen ~sitedata$agimpact, ylab="July total Phosphorus",xlab="agricultural impact gradient")
 abline(-4.0198,0.2241)
 
-fits <- lm(c.chub.tl ~ buf_width, data = sitedata)
-summary(fits)
-plot(fitn$resid)
-plot(sitedata$july.nitrogen~sitedata$turbidity, ylab="July total nitrogen",xlab="agricultural impact gradient")
+fitcas <- aov(agimpact ~ algae_cover2, data = sitedata)
+summary(fitcas)
+plot(fitcas$resid)
+plot(sitedata$algae_cover2~sitedata$agimpact, ylab="may chlorophyll",xlab="agricultural impact gradient")
+boxplot(agimpact ~ algae_cover2, data = sitedata, order = c("low", "med", "high"))
+TukeyHSD(fitcas)
 
+sitedata$inv_alg <- sitedata$totalcount.y/sitedata$algae_cover2
 
+fitcas <- lm(agimpact ~ totalcount.y/algae_cover2, data = sitedata)
+summary(fitcas)
+plot(fitcas$resid)
+plot(sitedata$totalcount.y/sitedata$algae_cover2~sitedata$agimpact, ylab="algae coverage",xlab="agricultural impact gradient")
+abline(3.9121494,0.07814)
 
 fitedible <- lm(buf_width ~ agimpact, data = sitedata)
 summary(fitedible)
@@ -183,7 +209,7 @@ abline(326.939, -42.584)
 
 fitedible <- lm((terpred/100) ~ agimpact, data = sitedata)
 summary(fitedible)
-plot((sitedata$terpred/100) ~ sitedata$agimpact, xlab = "agricultural intensity gradient")
+plot((sitedata$terpred/100) ~ sitedata$agimpact, xlab = "agricultural intensity gradient", ylab = "proportion of predatory terrestrial invertebrates")
 
 fitedible <- lm((aqpred/totalcount.y) ~ agimpact, data = sitedata)
 summary(fitedible)

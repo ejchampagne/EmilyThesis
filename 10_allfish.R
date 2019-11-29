@@ -12,11 +12,11 @@ keeppp <- c("creek chub")#underhill removed
 sitefish <- sitefish[sitefish$species %in% keeppp,]
 
 
-fitccw <- lm(forkmm ~ agimpact, data=sitefish)
+fitccw <- lm(log(forkmm) ~ agimpact, data=sitefish)
 summary(fitccw)
 plot(fitccw$resid)
-plot(sitefish$forkmm~sitefish$agimpact, ylab="creek chub fork length",xlab="agricultural gradient")
-abline(91.509, -4.557)
+plot(log(sitefish$forkmm)~sitefish$agimpact, ylab="creek chub fork length (mm)",xlab="agricultural gradient")
+abline(88.592, -4.043)
 
 fitccw <- lm(forkmm ~ temp, data=sitefish)
 summary(fitccw)
